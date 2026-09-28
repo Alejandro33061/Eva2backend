@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Catálogo de Accesorios | GameStore{% endblock %}
+
+{% block content %}
+<style>
+    .catalog-header { border-bottom: 2px solid #45a29e; padding-bottom: 10px; margin-bottom: 20px; color: #66fcf1; text-transform: uppercase; letter-spacing: 2px; font-weight: 800; }
+    .steam-card { background-color: #181a21; border: 1px solid #32353c; border-radius: 8px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; height: 100%; display: flex; flex-direction: column; }
+    .steam-card:hover { transform: translateY(-8px); box-shadow: 0 12px 25px rgba(102, 252, 241, 0.15); border-color: #45a29e; }
+    .steam-card-img { width: 100%; height: 220px; object-fit: cover; border-bottom: 2px solid #32353c; transition: opacity 0.3s; }
+    .steam-card:hover .steam-card-img { opacity: 0.8; }
+    .steam-card-body { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+    .steam-card-title { color: #ffffff; font-size: 1.3rem; font-weight: 700; margin-bottom: 15px; }
+    .steam-badge { background-color: #32353c; color: #c5c6c7; padding: 6px 12px; border-radius: 4px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-right: 5px; margin-bottom: 10px; display: inline-block; font-weight: 600; }
+    .steam-price { color: #66fcf1; font-size: 1.6rem; font-weight: 900; margin-top: auto; padding-top: 15px; }
+    .btn-buy { background: linear-gradient(90deg, #45a29e 0%, #1f2833 100%); color: white; border: none; width: 100%; padding: 12px; margin-top: 15px; border-radius: 4px; font-weight: bold; text-transform: uppercase; transition: all 0.3s; }
+    .btn-buy:hover { background: linear-gradient(90deg, #66fcf1 0%, #45a29e 100%); color: #0b0c10; box-shadow: 0 0 10px rgba(102, 252, 241, 0.4); }
+</style>
+
+<div class="container mt-4">
+    <h2 class="catalog-header">🎧 Accesorios Gamer</h2>
+    
+    <!-- BARRA DE ADMINISTRACIÓN CON ENLACES AL ADMIN -->
+    <div class="d-flex justify-content-between align-items-center mb-4 p-3" style="background-color: #181a21; border: 1px solid #32353c; border-radius: 8px;">
+        <div>
+            <a href="/admin/" class="btn btn-sm btn-success fw-bold me-2" style="background-color: #01ff70; color: #000; border: none;">+ Agregar</a>
+            <a href="/admin/" class="btn btn-sm btn-warning fw-bold me-2" style="background-color: #f1c40f; color: #000; border: none;">✏️ Modificar</a>
+            <a href="/admin/" class="btn btn-sm btn-danger fw-bold" style="background-color: #ff2a6d; color: #fff; border: none;">🗑️ Eliminar</a>
+        </div>
+        <form class="d-flex">
+            <input class="form-control form-control-sm me-2 bg-dark text-white border-secondary" type="search" placeholder="Buscar accesorio..." aria-label="Search">
+            <button class="btn btn-sm btn-outline-info fw-bold" type="submit" style="color: #66fcf1; border-color: #66fcf1;">🔍 Buscar</button>
+        </form>
+    </div>
+    
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for accesorio in accesorios %}
+        <div class="col">
+            <div class="steam-card">
+                <!-- Imagen corregida -->
+                <img src="{% static accesorio.imagen %}" alt="Foto de {{ accesorio.producto }}" class="steam-card-img" onerror="this.src='/static/img/portada_accesorios.jpg'">
+                
+                <div class="steam-card-body">
+                    <!-- AQUÍ ESTÁ LA CORRECCIÓN PRINCIPAL: .producto en vez de .nombre -->
+                    <h3 class="steam-card-title">{{ accesorio.producto }}</h3>
+                    
+                    <div class="mb-2">
+                        <!-- Muestra la marca del accesorio -->
+                        <span class="steam-badge">{{ accesorio.marca.nombre }}</span>
+                        <!-- Etiqueta de NUEVO -->
+                        <span class="steam-badge" style="background-color: rgba(69, 162, 158, 0.2); color: #66fcf1;">NUEVO</span>
+                    </div>
+                    
+                    <div class="steam-price">${{ accesorio.precio }}</div>
+                    <button class="btn-buy">Ver Detalles</button>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center py-5">
+            <h4 class="text-white-50">No hay accesorios disponibles en la base de datos.</h4>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <div class="text-center mt-5 mb-4">
+        <a href="{% url 'inicio_tienda' %}" class="btn btn-outline-secondary px-5 py-2 fw-bold text-uppercase">Volver al inicio</a>
+    </div>
+</div>
+{% endblock %}

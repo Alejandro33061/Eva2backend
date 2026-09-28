@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Inicio Accesorios | GameStore{% endblock %}
+
+{% block content %}
+<style>
+    /* Cartel Principal (Hero Section) exclusivo para Accesorios */
+    .hero-accesorios {
+        /* Un degradado oscuro con un toque púrpura profundo */
+        background: linear-gradient(135deg, rgba(40, 20, 50, 0.9) 0%, rgba(11, 12, 16, 0.95) 100%);
+        border: 1px solid rgba(102, 252, 241, 0.2);
+        border-radius: 16px;
+        padding: 80px 30px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        margin-bottom: 50px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-accesorios::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(177, 0, 255, 0.05) 0%, transparent 60%);
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: 900;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+    }
+
+    .hero-title span {
+        color: #b100ff; /* Púrpura neón */
+        text-shadow: 0 0 20px rgba(177, 0, 255, 0.4);
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+        color: #c5c6c7;
+        margin-bottom: 40px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Tarjetas de Categorías RGB */
+    .acc-card {
+        background-color: #181a21;
+        border: 1px solid #32353c;
+        border-radius: 12px;
+        padding: 40px 20px;
+        text-align: center;
+        transition: all 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .acc-icon {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        color: #ffffff;
+        transition: all 0.3s ease;
+    }
+
+    /* Efectos Hover RGB (Cian, Magenta, Verde) */
+    .card-audio:hover {
+        transform: translateY(-10px);
+        border-color: #05d9e8; /* Cian */
+        box-shadow: 0 15px 30px rgba(5, 217, 232, 0.2);
+    }
+    .card-audio:hover .acc-icon { color: #05d9e8; text-shadow: 0 0 15px rgba(5, 217, 232, 0.5); }
+    .card-audio:hover .btn-acc { border-color: #05d9e8; color: #05d9e8; }
+
+    .card-control:hover {
+        transform: translateY(-10px);
+        border-color: #ff2a6d; /* Magenta */
+        box-shadow: 0 15px 30px rgba(255, 42, 109, 0.2);
+    }
+    .card-control:hover .acc-icon { color: #ff2a6d; text-shadow: 0 0 15px rgba(255, 42, 109, 0.5); }
+    .card-control:hover .btn-acc { border-color: #ff2a6d; color: #ff2a6d; }
+
+    .card-setup:hover {
+        transform: translateY(-10px);
+        border-color: #01ff70; /* Verde Neón */
+        box-shadow: 0 15px 30px rgba(1, 255, 112, 0.2);
+    }
+    .card-setup:hover .acc-icon { color: #01ff70; text-shadow: 0 0 15px rgba(1, 255, 112, 0.5); }
+    .card-setup:hover .btn-acc { border-color: #01ff70; color: #01ff70; }
+
+    .acc-title {
+        color: #ffffff;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .acc-text {
+        color: #c5c6c7;
+        font-size: 0.95rem;
+        margin-bottom: 25px;
+        flex-grow: 1;
+    }
+
+    .btn-acc {
+        background: transparent;
+        border: 2px solid #32353c;
+        color: #c5c6c7;
+        padding: 10px 20px;
+        border-radius: 6px;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-block;
+    }
+</style>
+
+<div class="container mt-2">
+    <!-- BANNER PRINCIPAL DE ACCESORIOS -->
+    <div class="hero-accesorios">
+        <div class="hero-content">
+            <h1 class="hero-title">Completa tu <span>Setup Gamer</span></h1>
+            <p class="hero-subtitle">Encuentra los periféricos más precisos, audio inmersivo y el mobiliario ergonómico que necesitas para dominar en tus largas sesiones de juego.</p>
+            
+            <!-- Asegúrate de que la URL coincida con tu archivo urls.py -->
+            <a href="{% url 'catalogo_accesorios' %}" class="btn btn-login px-5 py-3 fs-5" style="text-decoration: none; border-radius: 8px;">
+                Ver Todos los Accesorios
+            </a>
+        </div>
+    </div>
+
+    <!-- TARJETAS DE CATEGORÍAS (Efectos RGB al pasar el mouse) -->
+    <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+        
+        <!-- Tarjeta: Audio -->
+        <div class="col">
+            <div class="acc-card card-audio">
+                <div class="acc-icon">🎧</div>
+                <h3 class="acc-title">Audio Inmersivo</h3>
+                <p class="acc-text">Escucha cada detalle y anticípate a tus enemigos con nuestros audífonos de sonido envolvente 3D.</p>
+                <div>
+                    <!-- El botón lleva al catálogo general de accesorios -->
+                    <a href="{% url 'catalogo_accesorios' %}" class="btn-acc">Ver Audífonos</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tarjeta: Controles y Periféricos -->
+        <div class="col">
+            <div class="acc-card card-control">
+                <div class="acc-icon">⌨️</div>
+                <h3 class="acc-title">Periféricos</h3>
+                <p class="acc-text">Precisión milimétrica. Encuentra teclados mecánicos, ratones ultraligeros y mandos competitivos.</p>
+                <div>
+                    <a href="{% url 'catalogo_accesorios' %}" class="btn-acc">Ver Controles</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjeta: Mobiliario -->
+        <div class="col">
+            <div class="acc-card card-setup">
+                <div class="acc-icon">🪑</div>
+                <h3 class="acc-title">Mobiliario</h3>
+                <p class="acc-text">Cuida tu postura y juega con la máxima comodidad. Sillas ergonómicas y escritorios diseñados para tu setup.</p>
+                <div>
+                    <a href="{% url 'catalogo_accesorios' %}" class="btn-acc">Ver Sillas</a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}

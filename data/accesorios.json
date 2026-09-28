@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1, 
+    "producto": "Audífonos Pulse 3D", 
+    "marca": "Sony", 
+    "tipo": "Audio", 
+    "precio": 99990, 
+    "imagen": "img/pulse3d.jpg"
+  },
+  {
+    "id": 2, 
+    "producto": "Control Inalámbrico Xbox", 
+    "marca": "Microsoft", 
+    "tipo": "Mando", 
+    "precio": 64990, 
+    "imagen": "img/control_xbox.jpg"
+  },
+  {
+    "id": 3, 
+    "producto": "Silla Gamer Ergonómica", 
+    "marca": "Secretlab", 
+    "tipo": "Mobiliario", 
+    "precio": 350000, 
+    "imagen": "img/silla.jpg"
+  }
+]

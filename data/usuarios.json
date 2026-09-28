@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "username": "admin",
+        "email": "admin@gamestore.cl",
+        "password": "123"
+    },
+    {
+        "id": 2,
+        "username": "a",
+        "email": "aaa@gmail.com",
+        "password": "a"
+    },
+    {
+        "id": 3,
+        "username": "a1",
+        "email": "a1@gmail.com",
+        "password": "a1"
+    },
+    {
+        "id": 4,
+        "username": "aaa",
+        "email": "aa@gmail.com",
+        "password": "12345678"
+    },
+    {
+        "id": 5,
+        "username": "hola",
+        "email": "hola@gmail.com",
+        "password": "12345678"
+    },
+    {
+        "id": 6,
+        "username": "a2",
+        "email": "a@a",
+        "password": "12345678"
+    }
+]

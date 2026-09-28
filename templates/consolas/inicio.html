@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Inicio Consolas | GameStore{% endblock %}
+
+{% block content %}
+<style>
+    /* Cartel Principal (Hero Section) exclusivo para Hardware */
+    .hero-hardware {
+        /* Un degradado ligeramente más metálico/azulado para diferenciarlo de los juegos */
+        background: linear-gradient(135deg, rgba(20, 30, 48, 0.9) 0%, rgba(11, 12, 16, 0.95) 100%);
+        border: 1px solid rgba(102, 252, 241, 0.2);
+        border-radius: 16px;
+        padding: 80px 30px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        margin-bottom: 50px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-hardware::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(102, 252, 241, 0.05) 0%, transparent 60%);
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: 900;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+    }
+
+    .hero-title span {
+        color: #66fcf1;
+        text-shadow: 0 0 20px rgba(102, 252, 241, 0.4);
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+        color: #c5c6c7;
+        margin-bottom: 40px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Tarjetas de Marcas */
+    .brand-card {
+        background-color: #181a21;
+        border: 1px solid #32353c;
+        border-radius: 12px;
+        padding: 40px 20px;
+        text-align: center;
+        transition: all 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .brand-icon {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        color: #ffffff;
+        transition: all 0.3s ease;
+    }
+
+    /* Efectos Hover personalizados por marca */
+    .card-ps:hover {
+        transform: translateY(-10px);
+        border-color: #0070cc;
+        box-shadow: 0 15px 30px rgba(0, 112, 204, 0.2);
+    }
+    .card-ps:hover .brand-icon { color: #0070cc; text-shadow: 0 0 15px rgba(0, 112, 204, 0.5); }
+    .card-ps:hover .btn-brand { border-color: #0070cc; color: #0070cc; }
+
+    .card-xbox:hover {
+        transform: translateY(-10px);
+        border-color: #107c10;
+        box-shadow: 0 15px 30px rgba(16, 124, 16, 0.2);
+    }
+    .card-xbox:hover .brand-icon { color: #107c10; text-shadow: 0 0 15px rgba(16, 124, 16, 0.5); }
+    .card-xbox:hover .btn-brand { border-color: #107c10; color: #107c10; }
+
+    .card-nin:hover {
+        transform: translateY(-10px);
+        border-color: #e60012;
+        box-shadow: 0 15px 30px rgba(230, 0, 18, 0.2);
+    }
+    .card-nin:hover .brand-icon { color: #e60012; text-shadow: 0 0 15px rgba(230, 0, 18, 0.5); }
+    .card-nin:hover .btn-brand { border-color: #e60012; color: #e60012; }
+
+    .brand-title {
+        color: #ffffff;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .brand-text {
+        color: #c5c6c7;
+        font-size: 0.95rem;
+        margin-bottom: 25px;
+        flex-grow: 1;
+    }
+
+    .btn-brand {
+        background: transparent;
+        border: 2px solid #32353c;
+        color: #c5c6c7;
+        padding: 10px 20px;
+        border-radius: 6px;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-block;
+    }
+</style>
+
+<div class="container mt-2">
+    <!-- BANNER PRINCIPAL DE HARDWARE -->
+    <div class="hero-hardware">
+        <div class="hero-content">
+            <h1 class="hero-title">Poder de <span>Nueva Generación</span></h1>
+            <p class="hero-subtitle">Descubre las consolas que están redefiniendo los límites gráficos. Tiempos de carga ultrarrápidos, trazado de rayos y rendimiento sin concesiones.</p>
+            
+            <!-- Asegúrate de que el nombre de la URL 'catalogo_consolas' coincida con tu archivo urls.py -->
+            <a href="{% url 'catalogo_consolas' %}" class="btn btn-login px-5 py-3 fs-5" style="text-decoration: none; border-radius: 8px;">
+                Ver Inventario de Hardware
+            </a>
+        </div>
+    </div>
+
+    <!-- TARJETAS DE MARCAS (Efectos de color al pasar el mouse) -->
+    <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+        
+        <!-- Tarjeta: PlayStation -->
+        <div class="col">
+            <div class="brand-card card-ps">
+                <div class="brand-icon">🌀</div>
+                <h3 class="brand-title">PlayStation</h3>
+                <p class="brand-text">Sumérgete en mundos increíbles con la respuesta háptica y el audio 3D de la consola de Sony.</p>
+                <div>
+                    <!-- El botón lleva al mismo catálogo general -->
+                    <a href="{% url 'catalogo_consolas' %}" class="btn-brand">Explorar PS5</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tarjeta: Xbox -->
+        <div class="col">
+            <div class="brand-card card-xbox">
+                <div class="brand-icon">❎</div>
+                <h3 class="brand-title">Xbox</h3>
+                <p class="brand-text">Experimenta la verdadera potencia de los 12 teraflops y accede al catálogo más grande con Game Pass.</p>
+                <div>
+                    <a href="{% url 'catalogo_consolas' %}" class="btn-brand">Explorar Series X</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjeta: Nintendo -->
+        <div class="col">
+            <div class="brand-card card-nin">
+                <div class="brand-icon">🍄</div>
+                <h3 class="brand-title">Nintendo</h3>
+                <p class="brand-text">Juega donde quieras y como quieras con la versatilidad de Switch y su increíble pantalla OLED.</p>
+                <div>
+                    <a href="{% url 'catalogo_consolas' %}" class="btn-brand">Explorar Switch</a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}

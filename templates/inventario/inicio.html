@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Inicio | GameStore{% endblock %}
+
+{% block content %}
+<style>
+    /* Cartel Principal (Hero Section) */
+    .hero-section {
+        background: linear-gradient(135deg, rgba(31, 40, 51, 0.8) 0%, rgba(11, 12, 16, 0.95) 100%);
+        border: 1px solid rgba(102, 252, 241, 0.2);
+        border-radius: 16px;
+        padding: 80px 30px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        margin-bottom: 50px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Brillo de fondo para el cartel */
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(102, 252, 241, 0.05) 0%, transparent 60%);
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: 900;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+    }
+
+    /* Texto de neón en el título */
+    .hero-title span {
+        color: #66fcf1;
+        text-shadow: 0 0 20px rgba(102, 252, 241, 0.4);
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+        color: #c5c6c7;
+        margin-bottom: 40px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Tarjetas de Categorías */
+    .category-card {
+        background-color: #181a21;
+        border: 1px solid #32353c;
+        border-radius: 12px;
+        padding: 40px 20px;
+        text-align: center;
+        transition: all 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .category-card:hover {
+        transform: translateY(-10px);
+        border-color: #45a29e;
+        box-shadow: 0 15px 30px rgba(102, 252, 241, 0.15);
+    }
+
+    .category-icon {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        color: #45a29e;
+        transition: all 0.3s ease;
+    }
+
+    .category-card:hover .category-icon {
+        color: #66fcf1;
+        transform: scale(1.1);
+        text-shadow: 0 0 15px rgba(102, 252, 241, 0.3);
+    }
+
+    .category-title {
+        color: #ffffff;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .category-text {
+        color: #c5c6c7;
+        font-size: 0.95rem;
+        margin-bottom: 25px;
+        flex-grow: 1;
+    }
+
+    .btn-category {
+        background: transparent;
+        color: #66fcf1;
+        border: 2px solid #45a29e;
+        padding: 10px 20px;
+        border-radius: 6px;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-block;
+    }
+
+    .btn-category:hover {
+        background: rgba(102, 252, 241, 0.1);
+        border-color: #66fcf1;
+        color: #ffffff;
+        box-shadow: 0 0 15px rgba(102, 252, 241, 0.3);
+    }
+</style>
+
+<div class="container mt-2">
+    <!-- BANNER PRINCIPAL -->
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Bienvenido a <span>GameStore</span></h1>
+            <p class="hero-subtitle">Tu destino definitivo para encontrar los mejores videojuegos, el hardware de última generación y los accesorios que completan tu setup.</p>
+            
+            <a href="{% url 'catalogo_juegos' %}" class="btn btn-login px-5 py-3 fs-5" style="text-decoration: none; border-radius: 8px;">
+                Ver Catálogo Completo
+            </a>
+        </div>
+    </div>
+
+    <!-- TARJETAS DE ACCESO RÁPIDO A LAS 3 APPS -->
+    <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+        
+        <!-- Tarjeta: Juegos -->
+        <div class="col">
+            <div class="category-card">
+                <div class="category-icon">🎮</div>
+                <h3 class="category-title">Videojuegos</h3>
+                <p class="category-text">Explora nuestra colección con los títulos más aclamados para PC, PlayStation, Xbox y Nintendo Switch.</p>
+                <div>
+                    <a href="{% url 'catalogo_juegos' %}" class="btn-category">Entrar a Juegos</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tarjeta: Consolas -->
+        <div class="col">
+            <div class="category-card">
+                <div class="category-icon">🖥️</div>
+                <h3 class="category-title">Hardware</h3>
+                <p class="category-text">Equípate con las consolas más potentes del mercado y lleva tu experiencia gráfica al siguiente nivel.</p>
+                <div>
+                    <a href="{% url 'inicio_consolas' %}" class="btn-category">Ver Consolas</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjeta: Accesorios -->
+        <div class="col">
+            <div class="category-card">
+                <div class="category-icon">🎧</div>
+                <h3 class="category-title">Accesorios</h3>
+                <p class="category-text">Controles, audífonos, sillas y todo lo estrictamente necesario para dominar tus partidas online.</p>
+                <div>
+                    <a href="{% url 'inicio_accesorios' %}" class="btn-category">Ver Accesorios</a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}

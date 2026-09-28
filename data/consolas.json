@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1, 
+    "equipo": "PlayStation 5", 
+    "marca": "Sony", 
+    "almacenamiento": "1TB SSD", 
+    "precio": 549990, 
+    "imagen": "img/ps5.jpg"
+  },
+  {
+    "id": 2, 
+    "equipo": "Xbox Series X", 
+    "marca": "Microsoft", 
+    "almacenamiento": "1TB SSD", 
+    "precio": 529990, 
+    "imagen": "img/xbox.jpg"
+  },
+  {
+    "id": 3, 
+    "equipo": "Nintendo Switch OLED", 
+    "marca": "Nintendo", 
+    "almacenamiento": "64GB", 
+    "precio": 349990, 
+    "imagen": "img/switch.jpg"
+  }
+]
