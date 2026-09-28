@@ -21,12 +21,12 @@
 <div class="container mt-4">
     <h2 class="catalog-header">🎧 Accesorios Gamer</h2>
     
-    <!-- BARRA DE ADMINISTRACIÓN CON ENLACES AL ADMIN -->
+    <!-- BARRA DE ADMINISTRACIÓN CON ENLACES DESACTIVADOS -->
     <div class="d-flex justify-content-between align-items-center mb-4 p-3" style="background-color: #181a21; border: 1px solid #32353c; border-radius: 8px;">
         <div>
-            <a href="/admin/" class="btn btn-sm btn-success fw-bold me-2" style="background-color: #01ff70; color: #000; border: none;">+ Agregar</a>
-            <a href="/admin/" class="btn btn-sm btn-warning fw-bold me-2" style="background-color: #f1c40f; color: #000; border: none;">✏️ Modificar</a>
-            <a href="/admin/" class="btn btn-sm btn-danger fw-bold" style="background-color: #ff2a6d; color: #fff; border: none;">🗑️ Eliminar</a>
+            <a href="#" class="btn btn-sm btn-success fw-bold me-2" style="background-color: #01ff70; color: #000; border: none;">+ Agregar</a>
+            <a href="#" class="btn btn-sm btn-warning fw-bold me-2" style="background-color: #f1c40f; color: #000; border: none;">✏️ Modificar</a>
+            <a href="#" class="btn btn-sm btn-danger fw-bold" style="background-color: #ff2a6d; color: #fff; border: none;">🗑️ Eliminar</a>
         </div>
         <form class="d-flex">
             <input class="form-control form-control-sm me-2 bg-dark text-white border-secondary" type="search" placeholder="Buscar accesorio..." aria-label="Search">
@@ -38,17 +38,13 @@
         {% for accesorio in accesorios %}
         <div class="col">
             <div class="steam-card">
-                <!-- Imagen corregida -->
                 <img src="{% static accesorio.imagen %}" alt="Foto de {{ accesorio.producto }}" class="steam-card-img" onerror="this.src='/static/img/portada_accesorios.jpg'">
                 
                 <div class="steam-card-body">
-                    <!-- AQUÍ ESTÁ LA CORRECCIÓN PRINCIPAL: .producto en vez de .nombre -->
                     <h3 class="steam-card-title">{{ accesorio.producto }}</h3>
                     
                     <div class="mb-2">
-                        <!-- Muestra la marca del accesorio -->
                         <span class="steam-badge">{{ accesorio.marca.nombre }}</span>
-                        <!-- Etiqueta de NUEVO -->
                         <span class="steam-badge" style="background-color: rgba(69, 162, 158, 0.2); color: #66fcf1;">NUEVO</span>
                     </div>
                     
